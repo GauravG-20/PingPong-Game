@@ -1,0 +1,49 @@
+<PongPaddles>:
+    size: 25,200
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<PongBall>:
+    size: 50,50
+    canvas:
+        Ellipse:
+            pos:self.pos
+            size:self.size
+
+
+<PongGame>: #this file points PongGame class thats why
+    ball: pong_ball
+    player1: player_left
+    player2: player_right
+
+    canvas:
+        Rectangle:
+            pos: root.center_x - 5,0 #canvas is keyword for adding graphics; rectangle for to create rectangle; root.center_x tells center along x
+            # of window, root and since the thickness is 10 therefore to align we subtracted 5 from it
+            size: 10,root.height #size represents thickness and root.height represents height
+    Label:
+        center_x: root.width/4
+        font_size:70
+        top:root.top - 50
+        text:str(root.player1.score)
+    Label:
+        text:str(root.player2.score)
+        center_x:3*root.width/4
+        font_size:70
+        top:root.top - 50
+    
+    PongBall:
+        id: pong_ball
+        center:self.parent.center
+
+    PongPaddles:
+        id: player_left
+        x: 0
+        center_y: root.center_y
+    
+    PongPaddles:
+        id: player_right
+        x: root.width - self.width #root_width stands for width of the terminal 
+        center_y: root.center_y
